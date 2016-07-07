@@ -1,0 +1,27 @@
+
+
+index:
+  analysis:
+    analyzer:
+      ik:
+          alias: [ik_analyzer]
+          type: org.elasticsearch.index.analysis.IkAnalyzerProvider
+      ik_syno:
+          type: custom
+          filter: [my_synonym_filter]
+          tokenizer: my_max_word
+      ik_syno_smart:
+          type: custom
+          filter: [my_synonym_filter]
+          tokenizer: my_smart
+    filter:
+      my_synonym_filter:
+          type: synonym
+          synonyms_path: analysis/synonym.txt
+    tokenizer:
+      my_max_word:
+          type: ik
+          use_smart: false
+      my_smart:
+          type: ik
+          use_smart: true
